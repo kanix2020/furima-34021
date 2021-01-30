@@ -1,24 +1,58 @@
-# README
+# テーブル設計
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## users テーブル
 
-Things you may want to cover:
+| Column          | Type   | Options     |
+| --------------- | ------ | ----------- |
+| nick_name       | string | null: false |
+| email           | string | null: false |
+| password        | string | null: false |
+| last_name       | string | null: false |
+| first_name      | string | null: false |
+| last_name_kana  | string | null: false |
+| first_name_kana | string | null: false |
+| birthday        | date   | null: false |
 
-* Ruby version
+### Association
+- has_many :items
+- has_many :sold_outs
 
-* System dependencies
 
-* Configuration
+## items テーブル
 
-* Database creation
+| Column           | Type      | Options                        |
+| ---------------- | ------    | ------------------------------ |
+| title            | text      | null: false                    |
+| item_description | text      | null: false                    |
+| price            | integer   | null: false                    |
+| user             | reference | null: false, foreign_key: true |
 
-* Database initialization
+### Association
+- belongs_to :users
+- has_one    :sold_out
 
-* How to run the test suite
 
-* Services (job queues, cache servers, search engines, etc.)
+## sold_outs テーブル
 
-* Deployment instructions
+| Column | Type       | Options                        |
+| ------ | ---------- | ------------------------------ |
+| user   | references | null: false, foreign_key: true |
+| item   | references | null: false, foreign_key: true |
 
-* ...
+### Association
+- has_many :users
+- has_many :items
+
+
+## addresses テーブル
+
+| Column       | Type      | Options                        |
+| -----------  | --------- | ------------------------------ |
+| postcode     | integer   | null: false                    |
+| block        | text      | null: false                    |
+| building     | text      | null: false                    |
+| phone_number | integer   | null: false                    |
+| user         | reference | null: false, foreign_key: true |
+
+### Association
+- belongs_to :sold_out
