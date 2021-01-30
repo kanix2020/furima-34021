@@ -30,7 +30,7 @@
 | delivery_source_id | integer   | null: false                    |
 | delivery_day_id    | integer   | null: false                    |
 | price              | integer   | null: false                    |
-| user_id            | reference | null: false, foreign_key: true |
+| user               | reference | null: false, foreign_key: true |
 
 ### Association
 - belongs_to :user
@@ -41,8 +41,8 @@
 
 | Column    | Type       | Options                        |
 | --------- | ---------- | ------------------------------ |
-| user_id   | references | null: false, foreign_key: true |
-| item_id   | references | null: false, foreign_key: true |
+| user      | references | null: false, foreign_key: true |
+| item      | references | null: false, foreign_key: true |
 
 ### Association
 - belongs_to :user
@@ -59,7 +59,7 @@
 | block          | string    | null: false                    |
 | building       | string    | null: false                    |
 | phone_number   | string    | null: false                    |
-| order_id       | reference | null: false, foreign_key: true |
+| order          | reference | null: false, foreign_key: true |
 
 ### Association
 - belongs_to :order
