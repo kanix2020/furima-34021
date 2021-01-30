@@ -30,7 +30,7 @@
 | delivery_source_id | integer   | null: false                    |
 | delivery_day_id    | integer   | null: false                    |
 | price              | integer   | null: false                    |
-| user               | reference | null: false, foreign_key: true |
+| user_id            | reference | null: false, foreign_key: true |
 
 ### Association
 - belongs_to :user
