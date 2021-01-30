@@ -22,14 +22,14 @@
 
 | Column             | Type      | Options                        |
 | ------------------ | ------    | ------------------------------ |
-| title              | text      | null: false                    |
-| item_description   | text      | null: false                    |
+| title              | string    | null: false                    |
+| description        | text      | null: false                    |
 | category_id        | integer   | null: false                    |
 | item_state_id      | integer   | null: false                    |
 | delivery_price_id  | integer   | null: false                    |
 | delivery_source_id | integer   | null: false                    |
 | delivery_day_id    | integer   | null: false                    |
-| item_price         | integer   | null: false                    |
+| price              | integer   | null: false                    |
 | user               | reference | null: false, foreign_key: true |
 
 ### Association
@@ -55,10 +55,9 @@
 | Column        | Type      | Options                        |
 | -----------   | --------- | ------------------------------ |
 | postcode      | string    | null: false                    |
-| prefecture_id | integer    | null: false                    |
-| city          | text      | null: false                    |
-| block         | text      | null: false                    |
-| building      | text      | null: false                    |
+| city          | string    | null: false                    |
+| block         | string    | null: false                    |
+| building      | string    | null: false                    |
 | phone_number  | string    | null: false                    |
 | item          | reference | null: false, foreign_key: true |
 
