@@ -30,7 +30,7 @@
 | delivery_source_id | integer   | null: false                    |
 | delivery_day_id    | integer   | null: false                    |
 | price              | integer   | null: false                    |
-| user               | reference | null: false, foreign_key: true |
+| user_id            | reference | null: false, foreign_key: true |
 
 ### Association
 - belongs_to :user
@@ -39,10 +39,10 @@
 
 ## orders テーブル
 
-| Column | Type       | Options                        |
-| ------ | ---------- | ------------------------------ |
-| user   | references | null: false, foreign_key: true |
-| item   | references | null: false, foreign_key: true |
+| Column    | Type       | Options                        |
+| --------- | ---------- | ------------------------------ |
+| user_id   | references | null: false, foreign_key: true |
+| item_id   | references | null: false, foreign_key: true |
 
 ### Association
 - belongs_to :user
@@ -52,14 +52,14 @@
 
 ## addresses テーブル
 
-| Column        | Type      | Options                        |
-| -----------   | --------- | ------------------------------ |
-| postcode      | string    | null: false                    |
-| city          | string    | null: false                    |
-| block         | string    | null: false                    |
-| building      | string    | null: false                    |
-| phone_number  | string    | null: false                    |
-| item          | reference | null: false, foreign_key: true |
+| Column         | Type      | Options                        |
+| -------------- | --------- | ------------------------------ |
+| postcode       | string    | null: false                    |
+| city           | string    | null: false                    |
+| block          | string    | null: false                    |
+| building       | string    | null: false                    |
+| phone_number   | string    | null: false                    |
+| order_id       | reference | null: false, foreign_key: true |
 
 ### Association
 - belongs_to :order
