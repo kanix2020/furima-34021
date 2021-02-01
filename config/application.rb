@@ -1,9 +1,3 @@
-module Dansyalist
-  class Application < Rails::Application
-    config.i18n.default_locale = :ja
-  end
-end
-
 require_relative 'boot'
 
 require 'rails/all'
@@ -21,5 +15,11 @@ module Furima34021
     # Application configuration can go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded after loading
     # the framework and any gems in your application.
+  end
+end
+
+module Dansyalist
+  class Application < Rails::Application
+    config.i18n.default_locale = :ja
   end
 end

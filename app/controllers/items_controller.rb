@@ -7,5 +7,4 @@ class ItemsController < ApplicationController
     @user.destroy
     redirect_to root_path
   end
-
 end
