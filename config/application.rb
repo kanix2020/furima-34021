@@ -1,3 +1,9 @@
+module Dansyalist
+  class Application < Rails::Application
+    config.i18n.default_locale = :ja
+  end
+end
+
 require_relative 'boot'
 
 require 'rails/all'
