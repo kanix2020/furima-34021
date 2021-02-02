@@ -8,22 +8,6 @@ RSpec.describe User, type: :model do
     it "全ての項目が問題なく入力されていれば登録できる" do
      expect(@user).to be_valid
     end
-    it "last_nameがひらがなでも登録できる" do
-      @user.last_name = "てすと"
-      expect(@user).to be_valid
-    end
-    it "last_nameが全角カタカナでも登録できる" do
-      @user.last_name = "テスト"
-      expect(@user).to be_valid
-    end
-    it "first_nameがひらがなでも登録できる" do
-      @user.last_name = "てすと"
-      expect(@user).to be_valid
-    end
-    it "first_nameが全角カタカナでも登録できる" do
-      @user.last_name = "テスト"
-      expect(@user).to be_valid
-    end
   end
 
   describe '異常系[新規登録/ユーザー情報]' do
@@ -53,8 +37,18 @@ RSpec.describe User, type: :model do
       @user.valid?
       expect(@user.errors.full_messages).to include('パスワードは6文字以上で入力してください')
     end
-    it 'パスワードは、半角英数字混合での入力が必須であること' do
+    it 'パスワードは、数字のみでは登録できないこと' do
       @user.password = "000000"
+      @user.valid?
+      expect(@user.errors.full_messages).to include('パスワードには英字と数字の両方を含めて設定してください')
+    end
+    it 'パスワードは、英語のみでは登録できないこと' do
+      @user.password = "aaaaaa"
+      @user.valid?
+      expect(@user.errors.full_messages).to include('パスワードには英字と数字の両方を含めて設定してください')
+    end
+    it 'パスワードは、全角では登録できないこと' do
+      @user.password = "ああああああ"
       @user.valid?
       expect(@user.errors.full_messages).to include('パスワードには英字と数字の両方を含めて設定してください')
     end
