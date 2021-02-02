@@ -17,3 +17,9 @@ module Furima34021
     # the framework and any gems in your application.
   end
 end
+
+module Dansyalist
+  class Application < Rails::Application
+    config.i18n.default_locale = :ja
+  end
+end
