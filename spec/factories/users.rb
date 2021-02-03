@@ -10,6 +10,5 @@ FactoryBot.define do
     last_name_kana { "アベ" }
     first_name_kana { "ヒロシ" }
     birthday { 0000-00-00 }
-
   end
 end
