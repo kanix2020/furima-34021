@@ -3,12 +3,12 @@ class Item < ApplicationRecord
     validates :title
     validates :description
     validates :price
+    validates :price, numericality: { with: /\A[0-9]+\z/, message: 'は半角数字で入力してください' }
     validates :price, numericality: { greater_than_or_equal_to: 300, message: 'は300以上の数値で入力してください' }
     validates :price, numericality: { less_than_or_equal_to: 9_999_999, message: 'は999999以下の数値で入力してください' }
     validates :image
   end
 
-  validates :price, format: { with: /\A[0-9]+\z/, message: 'は半角数字で入力してください' }
 
   belongs_to :user
   has_one    :order
