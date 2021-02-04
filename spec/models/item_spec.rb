@@ -71,5 +71,10 @@ RSpec.describe Item, type: :model do
       @item.valid?
       expect(@item.errors.full_messages).to include('Priceは半角数字で入力してください')
     end
+    it 'Priceは半角英語のみでは登録できない' do
+      @item.price = 'abcd'
+      @item.valid?
+      expect(@item.errors.full_messages).to include('Priceは半角数字で入力してください')
+    end
   end
 end
