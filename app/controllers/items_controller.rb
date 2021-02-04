@@ -5,6 +5,11 @@ class ItemsController < ApplicationController
     @items = Item.all.order('created_at DESC').includes(:user)
   end
 
+  def edit
+    @item = Item.find(params[:id])
+    redirect_to action: :index unless @item.user == current_user
+  end
+
   def show
     @item = Item.find(params[:id])
   end
@@ -19,6 +24,15 @@ class ItemsController < ApplicationController
       redirect_to root_path
     else
       render :new
+    end
+  end
+
+  def update
+    @item = Item.find(params[:id])
+    if @item.update(article_params)
+      redirect_to root_path
+    else
+      render :edit
     end
   end
 
