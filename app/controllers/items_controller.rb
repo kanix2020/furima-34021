@@ -1,6 +1,6 @@
 class ItemsController < ApplicationController
   before_action :authenticate_user!, except: [:show, :index]
-  before_action :set_item, only: [:edit, :show, :update]
+  before_action :set_item, only: [:edit, :show, :update, :destroy]
 
   def index
     @items = Item.all.order('created_at DESC').includes(:user)
@@ -33,13 +33,11 @@ class ItemsController < ApplicationController
       render :edit
     end
   end
-  
-  #(削除機能追加時コメントアウトを外す)
-  # def destroy
-  #   @item = Item.find(params[:id])
-  #   @item.destroy
-  #   redirect_to root_path
-  # end
+
+  def destroy
+    @item.destroy
+    redirect_to root_path
+  end
 
   private
 
@@ -51,5 +49,4 @@ class ItemsController < ApplicationController
   def set_item
     @item = Item.find(params[:id])
   end
-  
 end
