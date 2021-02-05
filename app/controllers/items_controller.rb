@@ -1,17 +1,21 @@
 class ItemsController < ApplicationController
   before_action :authenticate_user!, except: [:show, :index]
+  before_action :set_item, only: [:edit, :show, :update]
+
+  def set_item
+    @item = Item.find(params[:id])
+  end
+
 
   def index
     @items = Item.all.order('created_at DESC').includes(:user)
   end
 
   def edit
-    @item = Item.find(params[:id])
     redirect_to action: :index unless @item.user == current_user
   end
 
   def show
-    @item = Item.find(params[:id])
   end
 
   def new
@@ -28,13 +32,19 @@ class ItemsController < ApplicationController
   end
 
   def update
-    @item = Item.find(params[:id])
     if @item.update(article_params)
-      redirect_to root_path
+      redirect_to item_path(@item.id)
     else
       render :edit
     end
   end
+  
+  #(削除機能追加時コメントアウトを外す)
+  # def destroy
+  #   @item = Item.find(params[:id])
+  #   @item.destroy
+  #   redirect_to root_path
+  # end
 
   private
 
