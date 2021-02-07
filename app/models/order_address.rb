@@ -12,7 +12,8 @@ class OrderAddress
   
   #住所バリデーション
   with_options presence: true do
-    validates :postcode, format: { with: /\A\d{3}[-]\d{4}\z/, message: '郵便番号の保存にはハイフンが必要です。' }
+    validates :postcode, format: { with: /\A\d{3}[-]\d{4}\z/, message: 'の保存にはハイフンが必要です。' }
+    validates :postcode, format: { with: /\A\d{3}[-]\d{4}\z/, message: 'は半角数値でなければ登録できません。' }
     validates :prefecture_id
     validates :city
     validates :block
