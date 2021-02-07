@@ -5,12 +5,14 @@ class ItemsController < ApplicationController
 
   def index
     @items = Item.all.order('created_at DESC').includes(:user)
+    # @orders = Order.all.includes(:item)
   end
 
   def edit
   end
 
   def show
+    @item = Item.find(params[:id])
   end
 
   def new
@@ -54,7 +56,7 @@ class ItemsController < ApplicationController
   end
 
   def the_person
-    redirect_to action: :index unless @item.user == current_user
+    redirect_to action: :index unless @item.user == current_user && @item.order == nil
   end
 
 end
