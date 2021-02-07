@@ -5,7 +5,6 @@ class ItemsController < ApplicationController
 
   def index
     @items = Item.all.order('created_at DESC').includes(:user)
-    # @orders = Order.all.includes(:item)
   end
 
   def edit
