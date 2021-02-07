@@ -12,8 +12,9 @@ class OrderAddress
 
   # 住所バリデーション
   with_options presence: true do
+    validates :user_id
+    validates :item_id
     validates :postcode, format: { with: /\A\d{3}-\d{4}\z/, message: 'の保存にはハイフンが必要です。' }
-    validates :prefecture_id
     validates :city
     validates :block
     validates :phone_number, format: { with: /\A\d{11}\z/, message: '電話番号は11桁以内で入力してさい。' }

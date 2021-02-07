@@ -1,16 +1,34 @@
 require 'rails_helper'
 RSpec.describe OrderAddress, type: :model do
   before do
-    @order_address = FactoryBot.build(:order_address)
+    @user = FactoryBot.create(:user)
+    @item = FactoryBot.create(:item)
+    sleep 1
+    @order_address = FactoryBot.build(:order_address, user_id: @user.id , item_id: @item.id)
+    # @order_address = FactoryBot.build(:order_address)
   end
 
   describe '正常系[購入]' do
     it '全ての項目が問題なく入力されていれば登録できる' do
       expect(@order_address).to be_valid
     end
+    it '建物名が空でも購入できること' do
+      @order_address.building = ''
+      expect(@order_address).to be_valid
+    end
   end
 
   describe '異常系[購入]' do
+    it 'user_idが空では登録できない' do
+      @order_address.user_id = ''
+      @order_address.valid?
+      expect(@order_address.errors.full_messages).to include('Userを入力してください')
+    end
+    it 'item_idが空では登録できない' do
+      @order_address.item_id = ''
+      @order_address.valid?
+      expect(@order_address.errors.full_messages).to include('Itemを入力してください')
+    end
     it 'postcodeが空では登録できない' do
       @order_address.postcode = ''
       @order_address.valid?
