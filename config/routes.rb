@@ -3,6 +3,8 @@ Rails.application.routes.draw do
   root to: "items#index"
 
   resources :users, only: [:index, :new, :show, :destroy]
-  resources :items 
-
+  resources :items do
+    resources :orders, only: [:index, :new, :create]
+  end
+  
 end
