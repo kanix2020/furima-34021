@@ -1,6 +1,5 @@
 require 'rails_helper'
 RSpec.describe OrderAddress, type: :model do
-  
   before do
     @order_address = FactoryBot.build(:order_address)
   end
@@ -48,34 +47,34 @@ RSpec.describe OrderAddress, type: :model do
       expect(@order_address.errors.full_messages).to include('Postcodeの保存にはハイフンが必要です。')
     end
     it 'postcodeは全角で登録できない' do
-      @order_address.postcode = "あああ-ああああ"
+      @order_address.postcode = 'あああ-ああああ'
       @order_address.valid?
-      expect(@order_address.errors.full_messages).to include('Postcodeは半角数値でなければ登録できません。')
+      expect(@order_address.errors.full_messages).to include('Postcodeの保存にはハイフンが必要です。')
     end
     it 'postcodeは半角英字で登録できない' do
       @order_address.postcode = 'aaa-aaaa'
       @order_address.valid?
-      expect(@order_address.errors.full_messages).to include('Postcodeは半角数値でなければ登録できません。')
+      expect(@order_address.errors.full_messages).to include('Postcodeの保存にはハイフンが必要です。')
     end
     it 'phone_numberは11桁以内でなければ登録できない' do
-      @order_address.phone_number = "11223344556677"
+      @order_address.phone_number = '11223344556677'
       @order_address.valid?
       expect(@order_address.errors.full_messages).to include('Phone number電話番号は11桁以内で入力してさい。')
     end
     it 'phone_numberは全角で登録できない' do
-      @order_address.phone_number = "ああああああ"
+      @order_address.phone_number = 'ああああああ'
       @order_address.valid?
       expect(@order_address.errors.full_messages).to include('Phone numberは半角数字で入力してください')
     end
     it 'phone_numberは半角英字で登録できない' do
-      @order_address.phone_number = "abcdefg"
+      @order_address.phone_number = 'abcdefg'
       @order_address.valid?
       expect(@order_address.errors.full_messages).to include('Phone numberは半角数字で入力してください')
     end
-    it "tokenが空では登録できないこと" do
+    it 'tokenが空では登録できないこと' do
       @order_address.token = nil
       @order_address.valid?
-      expect(@order_address.errors.full_messages).to include("Tokenを入力してください")
+      expect(@order_address.errors.full_messages).to include('Tokenを入力してください')
     end
   end
 end
