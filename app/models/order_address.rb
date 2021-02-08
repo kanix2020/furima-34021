@@ -1,17 +1,15 @@
 class OrderAddress
   include ActiveModel::Model
   attr_accessor :token, :item_id, :order_id, :user_id, :postcode, :prefecture_id, :city, :block, :building, :phone_number
-
-  # トークンのバリデーション
-  validates :token, presence: true
-
+  
   # アクティブハッシュのバリデーション
   with_options numericality: { other_than: 1 } do
     validates :prefecture_id
   end
-
+  
   # 住所バリデーション
   with_options presence: true do
+    validates :token
     validates :user_id
     validates :item_id
     validates :postcode, format: { with: /\A\d{3}-\d{4}\z/, message: 'の保存にはハイフンが必要です。' }
