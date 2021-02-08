@@ -1,7 +1,7 @@
 FactoryBot.define do
   factory :user do
     nick_name { 'test' }
-    email { 'test@test.com' }
+    email { Faker::Internet.free_email }
     password { '00000a' }
     password_confirmation { password }
     last_name { '阿部' }
