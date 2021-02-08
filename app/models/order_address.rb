@@ -1,6 +1,6 @@
 class OrderAddress
   include ActiveModel::Model
-  attr_accessor :token, :item_id, :order_id, :user_id, :postcode, :prefecture_id, :city, :block, :building, :phone_number
+  attr_accessor :token, :item_id, :user_id, :postcode, :prefecture_id, :city, :block, :building, :phone_number
   
   # アクティブハッシュのバリデーション
   with_options numericality: { other_than: 1 } do
